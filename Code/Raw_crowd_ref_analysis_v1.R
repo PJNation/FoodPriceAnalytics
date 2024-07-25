@@ -469,6 +469,8 @@ stat.desc(YMze_raw_weekly_ref_crd$Weekly_price.y)
 t.test(YMze_raw_weekly_ref_crd$Weekly_price.x, YMze_raw_weekly_ref_crd$Weekly_price.y, paired = TRUE, alternative = "two.sided")
 var.test(YMze_raw_weekly_ref_crd$Weekly_price.x, YMze_raw_weekly_ref_crd$Weekly_price.y)
 
+
+
 ##Yellow Maize Monthly
 
 YMze_raw_monthly <- as.data.frame(subset(Raw_monthly_avg, subset=Raw_monthly_avg$Commodity_type=="Ymaize"))
@@ -681,27 +683,59 @@ nrow(test3[!is.na(test3$price),])
 test4<-subset(Raw_daily, Raw_daily$Data_Source=="Crowd" & Raw_daily$Commodity_type=="I_Rice")
 nrow(test4[!is.na(test4$price),])
 
+##Table metrics - Mean values Column 1
+
+# Gr (yellow, white)
+mean(YMze_raw_monthly_ref$monthly_price)
+mean(WMze_raw_monthly_ref$monthly_price)
+
+
+# Gr (Thailand, India)
+mean(TRice_raw_monthly_ref$monthly_price)
+mean(IRice_raw_monthly_ref$monthly_price)
+
+
+##Table metrics - Mean values Column 2
+
+# Cr (yellow, white)
+mean(YMze_raw_monthly_crd$monthly_price)
+mean(WMze_raw_monthly_crd$monthly_price)
+
+# Cr (Thailand, India)
+mean(TRice_raw_monthly_crd$monthly_price)
+mean(IRice_raw_monthly_crd$monthly_price)
+
+
+##Table metrics - R values Column 3
+
+#Correlate Yellow Maize
+cor(YMze_raw_monthly_ref_crd$monthly_price.x, YMze_raw_monthly_ref_crd$monthly_price.y, method = "pearson")
+
+#Correlate White Maize
+cor(WMze_raw_monthly_ref_crd$monthly_price.x, WMze_raw_monthly_ref_crd$monthly_price.y, method = "pearson")
+
+#Correlate Thailand Rice
+cor(TRice_raw_monthly_ref_crd$monthly_price.x, TRice_raw_monthly_ref_crd$monthly_price.y, method = "pearson")
+
+#Correlate Indian Rice
+cor(IRice_raw_monthly_ref_crd$monthly_price.x, IRice_raw_monthly_ref_crd$monthly_price.y, method = "pearson")
 
 
 
 
+##Table metrics - adjusted r2 values Column 4
 
+#Yellow Maize
+summary(lm(monthly_price.x ~ monthly_price.y, data = YMze_raw_monthly_ref_crd))$adj.r.squared
 
+#White Maize
+summary(lm(monthly_price.x ~ monthly_price.y, data = WMze_raw_monthly_ref_crd))$adj.r.squared
 
+#Thailand Rice
+summary(lm(monthly_price.x ~ monthly_price.y, data = TRice_raw_monthly_ref_crd))$adj.r.squared
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+#Indian Rice
+summary(lm(monthly_price.x ~ monthly_price.y, data = IRice_raw_monthly_ref_crd))$adj.r.squared
 
 
 

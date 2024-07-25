@@ -24,7 +24,7 @@
 
 
 
-###******Run the "Raw_crowd_ref_analysis.R codes first to get the input vars*****
+###******Run the "Raw_crowd_ref_analysis_v1.R codes first to get the input vars*****
 
 library(ggplot2)
 library(lubridate)
@@ -206,7 +206,7 @@ datapoints_whls_mze<-ggplot() +
   )
 
 
-ggsave(plot = datapoints_whls_mze, filename = "figure_2b.pdf",
+ggsave(plot = datapoints_whls_mze, filename = "Fig2b.png",
        width = 6.5, height = 4.5, units = 'in', dpi = 900)
 
 
@@ -345,7 +345,7 @@ groundtruth_OHLC_mze<-ggplot() +
   )
 
 
-ggsave(plot = groundtruth_OHLC_mze, filename = "figure_2c.pdf",
+ggsave(plot = groundtruth_OHLC_mze, filename = "Fig2c.png",
        width = 6.5, height = 4.5, units = 'in', dpi = 900)
 
 ###Finalized trend Chart with OHLC (All Retail)
@@ -398,3 +398,14 @@ ggplot() +
     panel.border = element_rect(colour = "darkred", fill=NA, size=2)
   )
 
+
+
+#Counting the number of raw points
+count_mze_whsl<-subset (Raw_daily, Raw_daily$Market=="Wholesale"& Raw_daily$Commodity =="Maize")
+nrow(count_mze_whsl[!is.na(count_mze_whsl$price),])
+
+count_mze_rtl<-subset (Raw_daily, Raw_daily$Market=="Retail"& Raw_daily$Commodity =="Maize")
+nrow(count_mze_rtl[!is.na(count_mze_rtl$price),])
+
+count_mze_fgt<-subset (Raw_daily, Raw_daily$Market=="Farmgate"& Raw_daily$Commodity =="Maize")
+nrow(count_mze_fgt[!is.na(count_mze_fgt$price),])
